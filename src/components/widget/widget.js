@@ -1,8 +1,18 @@
-import { KeyboardArrowUp, PersonOutlined } from "@mui/icons-material";
+import {
+  AccountBalanceWalletOutlined,
+  KeyboardArrowUp,
+  MonetizationOnOutlined,
+  PersonOutlined,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
 import "./widget.scss";
 
 const Widget = ({ type }) => {
   let data;
+
+  //temporary data
+  const amount = 100;
+  const diff = 20;
 
   switch (type) {
     case "user":
@@ -10,7 +20,63 @@ const Widget = ({ type }) => {
         title: "USERS",
         isMoney: false,
         link: "See all users",
-        icon: <PersonOutlined className="icon" />,
+        icon: (
+          <PersonOutlined
+            className="icon"
+            style={{
+              color: "crimson",
+              backgroundColor: "rgba(255, 0, 0, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    case "order":
+      data = {
+        title: "ORDERS",
+        isMoney: false,
+        link: "View all orders",
+        icon: (
+          <ShoppingCartOutlined
+            className="icon"
+            style={{
+              color: "goldenrod",
+              backgroundColor: "rgba(218, 165, 32, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    case "earning":
+      data = {
+        title: "EARNINGS",
+        isMoney: true,
+        link: "view net earnings",
+        icon: (
+          <MonetizationOnOutlined
+            className="icon"
+            style={{
+              color: "green",
+              backgroundColor: "rgba(0, 128, 0, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    case "balance":
+      data = {
+        title: "BALANCE",
+        isMoney: true,
+        link: "See details",
+        icon: (
+          <AccountBalanceWalletOutlined
+            className="icon"
+            style={{
+              color: "purple",
+              backgroundColor: "rgba(128, 0, 128, 0.2)",
+            }}
+          />
+        ),
       };
       break;
     default:
@@ -20,16 +86,18 @@ const Widget = ({ type }) => {
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">USERS</span>
-        <span className="counter">56131</span>
-        <span className="link">See all users</span>
+        <span className="title">{data.title}</span>
+        <span className="counter">
+          {data.isMoney && "$"} {amount}
+        </span>
+        <span className="link">{data.link}</span>
       </div>
       <div className="right">
         <div className="percentage positive">
           <KeyboardArrowUp />
-          20%
+          {diff}%
         </div>
-        <PersonOutlined className="icon" />
+        {data.icon}
       </div>
     </div>
   );
