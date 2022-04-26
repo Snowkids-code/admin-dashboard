@@ -45,33 +45,33 @@
     }
 
     .summary {
-        width: 100%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       .item {
-          text-align: center;
+        text-align: center;
 
-          .item_title {
-              font-size: 14px;
-              color: gray;
+        .item_title {
+          font-size: 14px;
+          color: gray;
+        }
+
+        .item_result {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+          font-size: 14px;
+
+          &.positive {
+            color: green;
           }
 
-          .item_result {
-              display: flex;
-              align-items: center;
-              margin-top: 10px;
-              font-size: 14px;
-
-              &.positive {
-                color: green;
-              }
-
-              &.negative {
-                  color: red;
-              }
+          &.negative {
+            color: red;
           }
+        }
       }
     }
   }
