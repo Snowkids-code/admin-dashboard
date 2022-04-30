@@ -78,8 +78,8 @@ const List = () => {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell scope="row">{row.id}</TableCell>
-              <TableCell>
+              <TableCell  className="tableCell"scope="row">{row.id}</TableCell>
+              <TableCell className="tableCell">
                 <div className="cell_wrapper">
                   <img src={row.img} alt="" className="image" />
                   {row.product}

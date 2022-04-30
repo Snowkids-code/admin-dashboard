@@ -29,6 +29,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        bc: "rgba(255, 0, 0, 0.2)"
       };
       break;
     case "order":
@@ -45,6 +46,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        bc: "rgba(218, 165, 32, 0.2)"
       };
       break;
     case "earning":
@@ -61,6 +63,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        bc: "rgba(0, 128, 0, 0.2)"
       };
       break;
     case "balance":
@@ -77,6 +80,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        bc: "rgba(128, 0, 128, 0.2)"
       };
       break;
     default:
@@ -84,7 +88,7 @@ const Widget = ({ type }) => {
   }
 
   return (
-    <div className="widget">
+    <div className="widget" style={{backgroundColor: `${data.bc}`}}>
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
