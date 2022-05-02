@@ -1,0 +1,28 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input {
+    width: 200px;
+  }
+
+  button {
+    background-color: purple;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  span {
+      color: red;
+  }
+}
