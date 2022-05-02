@@ -2,15 +2,32 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {  collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const Datatable = () => {
+  const [data, setData] = useState([]);
 
-  const [data, setData] = useState(userRows);
+  useEffect(() => {
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "Users"));
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()});
+        });
+        setData(list)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id))
-  }
+    setData(data.filter((item) => item.id !== id));
+  };
   const actionColumn = [
     {
       field: "action",
@@ -22,12 +39,18 @@ const Datatable = () => {
             <Link to="/users/test" style={{ textDecoration: "none" }}>
               <div className="view_button">View</div>
             </Link>
-            <div className="delete_button" onClick={() => handleDelete(params.row.id)}>Delete</div>
+            <div
+              className="delete_button"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete
+            </div>
           </div>
         );
       },
     },
   ];
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
